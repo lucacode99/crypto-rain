@@ -1,0 +1,36 @@
+.title-main-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.intro-picture {     
+    height: 800px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.center-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-structure {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.start-game-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    }
+
+.invisibility {
+    display: none;
+}
