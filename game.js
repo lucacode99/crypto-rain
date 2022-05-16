@@ -4,6 +4,9 @@ const landingPageDiv = document.getElementById("landing-div")
 const ctx = document.getElementById('canvas').getContext('2d');
 
 let gameOver = false;
+let lifeCounter = 3;
+let bankAccount = 0;
+
 
 // map 
 const backgroundImg = new Image();
@@ -24,6 +27,16 @@ let movementSpeed = 5;
 let avatarWidth = 50;
 let avatarLength = 50;
 
+//bitcoin
+
+const bitcoinImg = new Image();
+bitcoinImg.src = '../Pictures/bitcoin.jpg';
+let bitcoinWidth = 50;
+let bitcoinHeight = 50;
+let bitcoinFallingSpeed = 3;
+let bitcoinStartingValueX = Math.random() * 1300;
+let bitcoinStartingValueY = Math.random() - 5 * 100;
+
 let animationFrameId;
 
 
@@ -32,13 +45,12 @@ let animationFrameId;
 
 function startGame () {
 landingPageDiv.classList.add("invisibility");
-requestAnimationFrame(animate)}
-
+// insert timer from here on?
+//setInterval ((bitcoinCreation), 4000)
+}
 
 function launchAstronaut () {
-
 ctx.drawImage(avatarImg, avatarPositionX, avatarPositionY, avatarWidth, avatarLength);
-console.log("xy")
 if (isAvatarGoingLeft) {
   if (avatarPositionX > 0) {
     avatarPositionX -= movementSpeed;
@@ -50,24 +62,35 @@ if (isAvatarGoingLeft) {
 }
 }
 
+function bitcoinCreation () {             
+   ctx.drawImage(bitcoinImg, bitcoinStartingValueX, bitcoinStartingValueY, 65, 65);
+}
+
+function bitcoinsRain () {                
+  bitcoinStartingValueY += bitcoinFallingSpeed;
+}
+
 
 function animate() {                                        
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
   launchAstronaut ();
-  requestAnimationFrame(animate)
-  };
+  requestAnimationFrame(animate) // graphic mistake probably lies somewhere in here
+  bitcoinCreation ();
+  bitcoinsRain();
+};
+  
 
 
-if (gameOver) {     // animate () komplett an gameover
+//include in animate () 
+  //include code to guide player to losing-screen!
+  if (gameOver) {     
   cancelAnimationFrame (animationFrameId);
-  // include code to guide player to losig-screen!
-  } else {
+    } else {
     animationFrameId = requestAnimationFrame(animate);
   }
 
 
-// all event-listeners
 window.addEventListener("load", () => {
     document.getElementById('start-button').onclick = () => {
         startGame ();                                  
@@ -77,11 +100,10 @@ window.addEventListener("load", () => {
 document.addEventListener("keydown", event => {
     if (event.code === "ArrowLeft") {
     isAvatarGoingLeft = true;
-    console.log("Astronaut sollte sich links bewegen")
-    }  if (event.code === "ArrowRight") {
+    }  
+    if (event.code === "ArrowRight") {
     isAvatarGoingRight = true;
-    console.log("Astronaut sollte sich rechts bewegen")
-  }
+    }
 });
 
 document.addEventListener("keyup", event => {
