@@ -7,7 +7,7 @@ const ctx = document.getElementById('canvas').getContext('2d');
 
 let gameOver = false;
 let lifeCounter = 3;
-let bankAccount = 0;
+let bitcoinCounter = 0;
 
 // map 
 const backgroundImg = new Image();
@@ -69,14 +69,19 @@ class Bitcoin {
 function blessingOfAMillionBitcoins() {
   const nextBitcoins = [];
   bitcoins.forEach(bitcoin => {
-  const currentStartingPosition = bitcoin.randomStartingPoint();
-  bitcoin.move(); 
-      if (bitcoin.posY < 700) {
-      nextBitcoins.push(bitcoin);
-      const {posY, posX, space, width} = bitcoin
-      ctx.drawImage(bitcoinImg, posX, posY, width, space);
+  //const currentStartingPosition = bitcoin.randomStartingPoint();
+  if (avatarPositionX < bitcoin.posX + bitcoin.width && avatarPositionX + avatarWidth > bitcoin.posX && avatarPositionY < bitcoin.posY + bitcoin.space &&  avatarLength + avatarPositionY > bitcoin.posY)  {
+    bitcoinCounter +=1;
+    console.log(bitcoinCounter);
+  }  else {
+    bitcoin.move(); 
+    if (bitcoin.posY < 700) {
+    nextBitcoins.push(bitcoin);
+    const {posY, posX, space, width} = bitcoin
+    ctx.drawImage(bitcoinImg, posX, posY, width, space);
     }
-  });
+     }
+    });
 
 bitcoins = nextBitcoins;
 }
@@ -138,3 +143,68 @@ document.addEventListener("keyup", event => {
      isAvatarGoingRight = false;
      
 })
+
+
+
+/* SECTION 02 Clone
+
+function blessingOfAMillionBitcoins() {
+  const nextBitcoins = [];
+  bitcoins.forEach(bitcoin => {
+  //const currentStartingPosition = bitcoin.randomStartingPoint();
+  bitcoin.move(); 
+      if (bitcoin.posY < 700) {
+      nextBitcoins.push(bitcoin);
+      const {posY, posX, space, width} = bitcoin
+      ctx.drawImage(bitcoinImg, posX, posY, width, space);
+    }
+  // new: collision logic:
+  if (avatarPositionX < bitcoin.posX + bitcoin.width && avatarPositionX + avatarWidth > bitcoin.posX && avatarPositionY < bitcoin.posY + bitcoin.space &&  avatarLength + avatarPositionY > bitcoin.posY)  {
+  bitcoinCounter +=1;
+  console.log(bitcoinCounter);
+  
+ 
+ 
+  }
+  });
+
+bitcoins = nextBitcoins;
+}
+
+function startGame () {
+landingPageDiv.classList.add("invisibility");
+animate();
+}
+
+function launchAstronaut () {
+ctx.drawImage(avatarImg, avatarPositionX, avatarPositionY, avatarWidth, avatarLength);
+if (isAvatarGoingLeft) {
+  if (avatarPositionX > 0) {
+    avatarPositionX -= movementSpeed;
+  }
+} else if (isAvatarGoingRight) {
+  if (avatarPositionX < canvasWidth - avatarWidth) {
+    avatarPositionX += movementSpeed;
+  }
+}
+}
+
+function animate() {                                     
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+  ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+  launchAstronaut();
+  blessingOfAMillionBitcoins();
+  if (animationFrameId % 200 === 0) {
+   bitcoins.push(new Bitcoin());
+  } 
+  if (gameOver) {     
+  cancelAnimationFrame (animationFrameId);
+  } 
+    else {
+    animationFrameId = requestAnimationFrame(animate);
+    }
+
+};
+
+
+*/
