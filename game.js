@@ -1,4 +1,6 @@
 
+// -------------------- Section 01: variables -------------------- \\
+
 const body = document.body
 const landingPageDiv = document.getElementById("landing-div")
 const ctx = document.getElementById('canvas').getContext('2d');
@@ -47,21 +49,22 @@ class Bitcoin {
     this.width = bitcoinWidth;
     this.space = bitcoinHeight;
     this.speed = bitcoinFallingSpeed;
-    this.posX = bitcoinStartingValueX;
-    this.posY = bitcoinStartingValueY;
-    
+    this.posX  = Math.floor(Math.random() * 1300)
+    // old but gold: this.posX  = bitcoinStartingValueX;
+    this.posY  = bitcoinStartingValueY;
   }
+
   move () {
     this.posY += this.speed;
   }
+
   randomStartingPoint() {
     this.posX;
     this.posY;
   }
 }
 
-
-// functions and game-logic
+// -------------------- Section 02: functions and game logic -------------------- \\
 
 function blessingOfAMillionBitcoins() {
   const nextBitcoins = [];
@@ -96,18 +99,10 @@ if (isAvatarGoingLeft) {
 }
 }
 
-/*
-function bitcoinsRain () {     
-ctx.drawImage(bitcoinImg, bitcoinStartingValueX, bitcoinStartingValueY, bitcoinWidth, bitcoinHeight);
-bitcoinStartingValueY += bitcoinFallingSpeed;
-}
-*/
-
 function animate() {                                     
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
   launchAstronaut();
-  //bitcoinsRain();
   blessingOfAMillionBitcoins();
   if (animationFrameId % 200 === 0) {
    bitcoins.push(new Bitcoin());
@@ -119,10 +114,9 @@ function animate() {
     animationFrameId = requestAnimationFrame(animate);
     }
 
- //requestAnimationFrame(animate) // graphic mistake probably lies somewhere in here
 };
   
-
+// -------------------- Section 03: Event-Listener -------------------- \\
 
 window.addEventListener("load", () => {
     document.getElementById('start-button').onclick = () => {
