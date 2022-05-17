@@ -7,7 +7,6 @@ let gameOver = false;
 let lifeCounter = 3;
 let bankAccount = 0;
 
-
 // map 
 const backgroundImg = new Image();
 backgroundImg.src = '../Pictures/earth.jpg';
@@ -31,22 +30,57 @@ let avatarLength = 50;
 
 const bitcoinImg = new Image();
 bitcoinImg.src = '../Pictures/bitcoin.jpg';
-let bitcoinWidth = 50;
-let bitcoinHeight = 50;
-let bitcoinFallingSpeed = 3;
+let bitcoinWidth = 65;
+let bitcoinHeight = 65;
+let bitcoinFallingSpeed = 3.5;
 let bitcoinStartingValueX = Math.random() * 1300;
 let bitcoinStartingValueY = Math.random() - 5 * 100;
 
+let bitcoins = [];
+
 let animationFrameId;
 
+// multitude of falling bitcoins
+
+class Bitcoin {
+  constructor() {
+    this.width = bitcoinWidth;
+    this.space = bitcoinHeight;
+    this.speed = bitcoinFallingSpeed;
+    this.posX = bitcoinStartingValueX;
+    this.posY = bitcoinStartingValueY;
+    
+  }
+  move () {
+    this.posY += this.speed;
+  }
+  randomStartingPoint() {
+    this.posX;
+    this.posY;
+  }
+}
 
 
 // functions and game-logic
 
+function blessingOfAMillionBitcoins() {
+  const nextBitcoins = [];
+  bitcoins.forEach(bitcoin => {
+  const currentStartingPosition = bitcoin.randomStartingPoint();
+  bitcoin.move(); 
+      if (bitcoin.posY < 700) {
+      nextBitcoins.push(bitcoin);
+      const {posY, posX, space, width} = bitcoin
+      ctx.drawImage(bitcoinImg, posX, posY, width, space);
+    }
+  });
+
+bitcoins = nextBitcoins;
+}
+
 function startGame () {
 landingPageDiv.classList.add("invisibility");
-// insert timer from here on?
-//setInterval ((bitcoinCreation), 4000)
+animate();
 }
 
 function launchAstronaut () {
@@ -62,33 +96,32 @@ if (isAvatarGoingLeft) {
 }
 }
 
-function bitcoinCreation () {             
-   ctx.drawImage(bitcoinImg, bitcoinStartingValueX, bitcoinStartingValueY, 65, 65);
+/*
+function bitcoinsRain () {     
+ctx.drawImage(bitcoinImg, bitcoinStartingValueX, bitcoinStartingValueY, bitcoinWidth, bitcoinHeight);
+bitcoinStartingValueY += bitcoinFallingSpeed;
 }
+*/
 
-function bitcoinsRain () {                
-  bitcoinStartingValueY += bitcoinFallingSpeed;
-}
-
-
-function animate() {                                        
+function animate() {                                     
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
-  launchAstronaut ();
-  requestAnimationFrame(animate) // graphic mistake probably lies somewhere in here
-  bitcoinCreation ();
-  bitcoinsRain();
-};
-  
-
-
-//include in animate () 
-  //include code to guide player to losing-screen!
+  launchAstronaut();
+  //bitcoinsRain();
+  blessingOfAMillionBitcoins();
+  if (animationFrameId % 200 === 0) {
+   bitcoins.push(new Bitcoin());
+  } 
   if (gameOver) {     
   cancelAnimationFrame (animationFrameId);
-    } else {
+  } 
+    else {
     animationFrameId = requestAnimationFrame(animate);
-  }
+    }
+
+ //requestAnimationFrame(animate) // graphic mistake probably lies somewhere in here
+};
+  
 
 
 window.addEventListener("load", () => {
