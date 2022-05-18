@@ -6,8 +6,6 @@ const landingPageDiv = document.getElementById("landing-div")
 const ctx = document.getElementById('canvas').getContext('2d');
 const canvas = document.querySelector('canvas');
 
-const test = document.querySelector('.testing')
-
 let gameOver = false;
 let victory = false;
 let lifeCounter = 1;
@@ -23,21 +21,12 @@ winningMusic.volume = 0.1;
 let losingMusic = new Audio("../Music/wah-wah-sad-trombone-6347.mp3");
 winningMusic.volume = 0.1; // Music\wah-wah-sad-trombone-6347.mp3
 
-
 // map 
 const backgroundImg = new Image();
 backgroundImg.src = '../Pictures/earth.jpg';
 
 let canvasWidth = 1300;
 let canvasHeight = 700;
-
-/*
-// bitcoin counter
-function printBitcoinCounter() {
-let bitcoinInterim = document.canvas.createElement('p');
-canvas.append(bitcoinCounter);
-}
-*/
 
 //avatar
 const avatarImg = new Image();
@@ -127,7 +116,6 @@ losingScreenImg.src = '../Pictures/crash-losing-picture.png';
 const winningScreenImg = new Image();
 winningScreenImg.src = '../Pictures/crown-winning-picture.png';
 
-
 // -------------------- Section 02: functions and game logic -------------------- \\
 
 function curseOfTooManyShitcoins() {
@@ -176,7 +164,7 @@ gameMusic.play();
 
 function loadLosingScreen () {
    body.append(losingScreenImg);
-   document.getElementById("resart_btn").classList.remove("invisibility");
+   document.getElementById("restart_btn").classList.remove("invisibility");
    document.getElementById("losing_txt").classList.remove("invisibility")
    gameMusic.pause();
    losingMusic.play();
@@ -184,7 +172,7 @@ function loadLosingScreen () {
 
 function loadWinningScreen () {
   body.append(winningScreenImg);
-  document.getElementById("resart_btn").classList.remove("invisibility");
+  document.getElementById("restart_btn").classList.remove("invisibility");
   document.getElementById("winning_txt").classList.remove("invisibility")
   document.getElementById("winning_txt_2").classList.remove("invisibility")
   gameMusic.pause();
@@ -210,10 +198,10 @@ function animate() {
   launchAstronaut();
   blessingOfAMillionBitcoins();
   curseOfTooManyShitcoins();
-  if (animationFrameId % 200 === 0) {   
+  if (animationFrameId % 250 === 0) {   
    bitcoins.push(new Bitcoin());
   } 
-  if (animationFrameId % 200 === 0) {   
+  if (animationFrameId % 50 === 0) {   
     shitcoins.push(new Shitcoin());
   }
   if (lifeCounter === 0) {
@@ -246,7 +234,7 @@ window.addEventListener("load", () => {
     document.getElementById('start-button').onclick = () => {
         startGame ();                                  
       };
-      document.getElementById('resart_btn').onclick = () => {
+      document.getElementById('restart_btn').onclick = () => {
         window.location.reload();                                
       };
     })
@@ -264,9 +252,3 @@ document.addEventListener("keyup", event => {
      isAvatarGoingLeft = false;
      isAvatarGoingRight = false; 
 });
-
-
-
-
-    
-  

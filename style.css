@@ -27,7 +27,6 @@
 .main-structure {
     display: flex;
     flex-direction: column;
-    
 }
 
 .start-game-button {
@@ -41,12 +40,7 @@
     display: none;
 }
 
-
-
-/* will center board but makes it "not" disappear when losing
 .playboard {
-    display: flex;
-    margin: 0 auto;
-}
-
-*/
+    margin-left: 10%;
+    margin-right: 10%;
+    }

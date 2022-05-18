@@ -17,6 +17,7 @@ trustworthy currency left out there. Collect 10 Bitcoins and achieve true wealth
 ## Backlog
 - Epic music will accompany seekers of true wealth
 - Live-counter of collected Bitcoins
+- Add more styles (round coins)
 
 ## Data structure
 
