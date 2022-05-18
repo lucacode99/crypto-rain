@@ -4,6 +4,9 @@
 const body = document.body
 const landingPageDiv = document.getElementById("landing-div")
 const ctx = document.getElementById('canvas').getContext('2d');
+const canvas = document.querySelector('canvas');
+
+const test = document.querySelector('.testing')
 
 let gameOver = false;
 let lifeCounter = 3;
@@ -94,6 +97,10 @@ class Shitcoin {
     }
 }
 
+// losing Screen
+
+const losingScreenImg = new Image();
+losingScreenImg.src = '../Pictures/crash-losing-picture.png';
 
 
 // -------------------- Section 02: functions and game logic -------------------- \\
@@ -141,6 +148,16 @@ landingPageDiv.classList.add("invisibility");
 animate();
 }
 
+function restartGame () {
+  location.reload();
+}
+
+function loadLosingScreen () {
+   body.append(losingScreenImg);
+   document.getElementById("resart_btn").classList.remove("invisibility");
+   document.getElementById("losing_txt").classList.remove("invisibility")
+     };
+ 
 function launchAstronaut () {
 ctx.drawImage(avatarImg, avatarPositionX, avatarPositionY, avatarWidth, avatarLength);
 if (isAvatarGoingLeft) {
@@ -163,14 +180,16 @@ function animate() {
   if (animationFrameId % 200 === 0) {   
    bitcoins.push(new Bitcoin());
   } 
-  if (animationFrameId % 500 === 0) {   
+  if (animationFrameId % 200 === 0) {   
     shitcoins.push(new Shitcoin());
   }
   if (lifeCounter === 0) {
     gameOver = true;
   }
-  if (gameOver) {     
+  if (gameOver) {
   cancelAnimationFrame (animationFrameId);
+  canvas.classList.add("invisibility");
+  loadLosingScreen ();
   } 
     else {
     animationFrameId = requestAnimationFrame(animate);
@@ -184,7 +203,11 @@ window.addEventListener("load", () => {
     document.getElementById('start-button').onclick = () => {
         startGame ();                                  
       };
-})
+      document.getElementById('resart_btn').onclick = () => {
+        console.log("dieser Knopf funktioniert")
+        window.location.reload();                                
+      };
+    })
 
 document.addEventListener("keydown", event => {
     if (event.code === "ArrowLeft") {
@@ -199,4 +222,10 @@ document.addEventListener("keyup", event => {
      isAvatarGoingLeft = false;
      isAvatarGoingRight = false;
      
-})
+});
+
+
+
+
+    
+  
