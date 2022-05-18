@@ -5,6 +5,12 @@
     margin: 20px;
 }
 
+.intro-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
 .intro-picture {     
     height: 800px;
     padding-left: 10%;
@@ -31,6 +37,16 @@
     margin-top: 30px;
     }
 
-    .invisibility {
-        display: none;
-    }
+.invisibility {
+    display: none;
+}
+
+
+
+/* will center board but makes it "not" disappear when losing
+.playboard {
+    display: flex;
+    margin: 0 auto;
+}
+
+*/

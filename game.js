@@ -9,6 +9,7 @@ const canvas = document.querySelector('canvas');
 const test = document.querySelector('.testing')
 
 let gameOver = false;
+let victory = false;
 let lifeCounter = 3;
 let bitcoinCounter = 0;
 
@@ -18,6 +19,14 @@ backgroundImg.src = '../Pictures/earth.jpg';
 
 let canvasWidth = 1300;
 let canvasHeight = 700;
+
+/*
+// bitcoin counter
+function printBitcoinCounter() {
+let bitcoinInterim = document.canvas.createElement('p');
+canvas.append(bitcoinCounter);
+}
+*/
 
 //avatar
 const avatarImg = new Image();
@@ -102,6 +111,11 @@ class Shitcoin {
 const losingScreenImg = new Image();
 losingScreenImg.src = '../Pictures/crash-losing-picture.png';
 
+// winning Screen
+
+const winningScreenImg = new Image();
+winningScreenImg.src = '../Pictures/crown-winning-picture.png';
+// Pictures\crown-winning-picture.png
 
 // -------------------- Section 02: functions and game logic -------------------- \\
 
@@ -110,7 +124,8 @@ function curseOfTooManyShitcoins() {
   shitcoins.forEach(shitcoin => {
   if (avatarPositionX < shitcoin.posX + shitcoin.width && avatarPositionX + avatarWidth > shitcoin.posX && avatarPositionY < shitcoin.posY + shitcoin.space &&  avatarLength + avatarPositionY > shitcoin.posY)  {
       lifeCounter -= 1;
-      console.log(lifeCounter);
+      console.log(`life counter: ${lifeCounter}`);
+      //printBitcoinCounter();
     }  else {
       shitcoin.move(); 
       if (shitcoin.posY < 700) {
@@ -123,14 +138,13 @@ function curseOfTooManyShitcoins() {
   shitcoins = nextShitcoins;
 }
 
-
 function blessingOfAMillionBitcoins() {
   const nextBitcoins = [];
   bitcoins.forEach(bitcoin => {
   if (avatarPositionX < bitcoin.posX + bitcoin.width && avatarPositionX + avatarWidth > bitcoin.posX && avatarPositionY < bitcoin.posY + bitcoin.space &&  avatarLength + avatarPositionY > bitcoin.posY)  {
     bitcoinCounter +=1;
-    console.log(bitcoinCounter);
-  }  else {
+    console.log(`life counter: ${bitcoinCounter}`)
+    }  else {
     bitcoin.move(); 
     if (bitcoin.posY < 700) {
     nextBitcoins.push(bitcoin);
@@ -148,15 +162,18 @@ landingPageDiv.classList.add("invisibility");
 animate();
 }
 
-function restartGame () {
-  location.reload();
-}
-
 function loadLosingScreen () {
    body.append(losingScreenImg);
    document.getElementById("resart_btn").classList.remove("invisibility");
    document.getElementById("losing_txt").classList.remove("invisibility")
      };
+
+function loadWinningScreen () {
+  body.append(winningScreenImg);
+  document.getElementById("resart_btn").classList.remove("invisibility");
+  document.getElementById("winning_txt").classList.remove("invisibility")
+  document.getElementById("winning_txt_2").classList.remove("invisibility")
+};
  
 function launchAstronaut () {
 ctx.drawImage(avatarImg, avatarPositionX, avatarPositionY, avatarWidth, avatarLength);
@@ -190,6 +207,16 @@ function animate() {
   cancelAnimationFrame (animationFrameId);
   canvas.classList.add("invisibility");
   loadLosingScreen ();
+  }
+  // neu
+  if (bitcoinCounter === 10) {
+    victory = true;
+  }
+  if (victory) {
+  cancelAnimationFrame (animationFrameId);
+  canvas.classList.add("invisibility");
+  loadWinningScreen();
+ 
   } 
     else {
     animationFrameId = requestAnimationFrame(animate);
@@ -204,7 +231,6 @@ window.addEventListener("load", () => {
         startGame ();                                  
       };
       document.getElementById('resart_btn').onclick = () => {
-        console.log("dieser Knopf funktioniert")
         window.location.reload();                                
       };
     })
@@ -220,8 +246,7 @@ document.addEventListener("keydown", event => {
 
 document.addEventListener("keyup", event => {
      isAvatarGoingLeft = false;
-     isAvatarGoingRight = false;
-     
+     isAvatarGoingRight = false; 
 });
 
 
