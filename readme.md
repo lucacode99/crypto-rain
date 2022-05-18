@@ -15,12 +15,34 @@ trustworthy currency left out there. Collect 10 Bitcoins and achieve true wealth
 - The Game includes a restart-function both for sore losers and true winners
 
 ## Backlog
-- Epic Music will accompany seekers of true wealth
+- Epic music will accompany seekers of true wealth
 - Live-counter of collected Bitcoins
 
 ## Data structure
-_List of classes and methods_
 
+## startGame () {}
+- animate() {}
+- gameMusic.play();
+
+## loadLosingScreen () {}
+- gameMusic.pause() {}
+- winningMusic.play() {}
+
+## launchAstronaut () {}
+- drawImage () {}
+
+## animate () {}
+- launchAstronaut() {}
+- blessingOfAMillionBitcoins() {}
+- curseOfTooManyShitcoins() {}
+
+## blessingOfAMillionBitcoins() {}
+- move () {}
+- drawImage () {}
+
+## bitcoin.js
+-  move () {}
+-  randomStartingPoint() {}
 
 ## States y States Transitions
 - splashScreen
@@ -30,10 +52,25 @@ _List of classes and methods_
 
 
 ## Task
-_List of tasks in order of priority_
-
+- animate - buildDom
+- animate - buildGameScreen
+- animate - playGameMusic
+- animate - launchAvatar
+- animate - launchBitcoins
+- animate - launchShitcoins
+- animate - checkForVictory
+- animate - checkForDefeat
+- launchAstronaut - drawAvatar
+- launchAstronaut - enableAvatarMovement
+- loadWinningScreen - drawWinningScreen
+- loadWinningScreen - stopGameMusic
+- loadWinningScreen - playWinMusic
+- loadWinningScreen - enableGameRestart
+- loadLosingScreen - drawLosingScreen
+- loadLosingScreen - stopGameMusic
+- loadLosingScreen - playDefeatMusic
+- loadLosingScreen - enableGameRestart
 
 ## Links
 
 - [Github repository Link](https://github.com/lucacode99)
-- [Deployment Link]
