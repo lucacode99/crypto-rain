@@ -10,8 +10,19 @@ const test = document.querySelector('.testing')
 
 let gameOver = false;
 let victory = false;
-let lifeCounter = 3;
+let lifeCounter = 1;
 let bitcoinCounter = 0;
+
+// music
+let gameMusic = new Audio("../Music/mc-quattro-back-to-the-future-retrowave-punk-20775.mp3");
+gameMusic.volume = 0.1;
+
+let winningMusic = new Audio("../Music/success-fanfare-trumpets-6185.mp3");
+winningMusic.volume = 0.1; 
+
+let losingMusic = new Audio("../Music/wah-wah-sad-trombone-6347.mp3");
+winningMusic.volume = 0.1; // Music\wah-wah-sad-trombone-6347.mp3
+
 
 // map 
 const backgroundImg = new Image();
@@ -115,7 +126,7 @@ losingScreenImg.src = '../Pictures/crash-losing-picture.png';
 
 const winningScreenImg = new Image();
 winningScreenImg.src = '../Pictures/crown-winning-picture.png';
-// Pictures\crown-winning-picture.png
+
 
 // -------------------- Section 02: functions and game logic -------------------- \\
 
@@ -160,12 +171,15 @@ bitcoins = nextBitcoins;
 function startGame () {
 landingPageDiv.classList.add("invisibility");
 animate();
+gameMusic.play();
 }
 
 function loadLosingScreen () {
    body.append(losingScreenImg);
    document.getElementById("resart_btn").classList.remove("invisibility");
    document.getElementById("losing_txt").classList.remove("invisibility")
+   gameMusic.pause();
+   losingMusic.play();
      };
 
 function loadWinningScreen () {
@@ -173,6 +187,8 @@ function loadWinningScreen () {
   document.getElementById("resart_btn").classList.remove("invisibility");
   document.getElementById("winning_txt").classList.remove("invisibility")
   document.getElementById("winning_txt_2").classList.remove("invisibility")
+  gameMusic.pause();
+  winningMusic.play();
 };
  
 function launchAstronaut () {
