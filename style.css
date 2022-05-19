@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px;
+    
 }
 
 .intro-text {
@@ -12,7 +12,7 @@
    }
 
 .intro-picture {     
-    height: 800px;
+    height: 650px;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -41,6 +41,11 @@
 }
 
 .playboard {
+    height: 650px;
     margin-left: 10%;
-    margin-right: 10%;
-    }
+    margin-right: 10%;    
+}
+
+.restart-button {
+margin-left: 50%;
+}    

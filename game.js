@@ -14,24 +14,20 @@ let bitcoinCounter = 0;
 // music
 let gameMusic = new Audio("../Music/mc-quattro-back-to-the-future-retrowave-punk-20775.mp3");
 gameMusic.volume = 0.1;
-
 let winningMusic = new Audio("../Music/success-fanfare-trumpets-6185.mp3");
 winningMusic.volume = 0.1; 
-
 let losingMusic = new Audio("../Music/wah-wah-sad-trombone-6347.mp3");
-winningMusic.volume = 0.1; // Music\wah-wah-sad-trombone-6347.mp3
+winningMusic.volume = 0.1; 
 
 // map 
 const backgroundImg = new Image();
 backgroundImg.src = '../Pictures/earth.jpg';
-
 let canvasWidth = 1300;
 let canvasHeight = 700;
 
 //avatar
 const avatarImg = new Image();
-avatarImg.src = '../Pictures/player_one.jpg';
-
+avatarImg.src = '../Pictures/wallet-removebg-preview.png';
 let isAvatarGoingLeft = false;
 let isAvatarGoingRight = false;
 let avatarPositionX = 650;
@@ -43,13 +39,12 @@ let avatarLength = 50;
 //bitcoin
 
 const bitcoinImg = new Image();
-bitcoinImg.src = '../Pictures/bitcoin.jpg';
+bitcoinImg.src = '../Pictures/bitcoin-removebg-preview.png';
 let bitcoinWidth = 65;
 let bitcoinHeight = 65;
 let bitcoinFallingSpeed = 3.5;
 let bitcoinStartingValueX = Math.random() * 1300;
 let bitcoinStartingValueY = Math.random() - 5 * 100;
-
 let bitcoins = [];
 
 let animationFrameId;
@@ -78,7 +73,7 @@ class Bitcoin {
 // shitcoin
 
 const shitcoinImg = new Image();
-shitcoinImg.src = '../Pictures/shitcoin_aufkleber.jpg';
+shitcoinImg.src = '../Pictures/shitcoin_aufkleber-removebg-preview.png';
 let shitcoinWidth = 65;
 let shitcoinHeight = 65;
 let shitcoinFallingSpeed = 5;
@@ -106,13 +101,10 @@ class Shitcoin {
     }
 }
 
-// losing Screen
+// lastStageScreens
 
 const losingScreenImg = new Image();
 losingScreenImg.src = '../Pictures/crash-losing-picture.png';
-
-// winning Screen
-
 const winningScreenImg = new Image();
 winningScreenImg.src = '../Pictures/crown-winning-picture.png';
 
@@ -124,8 +116,7 @@ function curseOfTooManyShitcoins() {
   if (avatarPositionX < shitcoin.posX + shitcoin.width && avatarPositionX + avatarWidth > shitcoin.posX && avatarPositionY < shitcoin.posY + shitcoin.space &&  avatarLength + avatarPositionY > shitcoin.posY)  {
       lifeCounter -= 1;
       console.log(`life counter: ${lifeCounter}`);
-      //printBitcoinCounter();
-    }  else {
+      }  else {
       shitcoin.move(); 
       if (shitcoin.posY < 700) {
       nextShitcoins.push(shitcoin);
@@ -160,6 +151,7 @@ function startGame () {
 landingPageDiv.classList.add("invisibility");
 animate();
 gameMusic.play();
+canvas.classList.remove("invisibility");
 }
 
 function loadLosingScreen () {
@@ -168,7 +160,7 @@ function loadLosingScreen () {
    document.getElementById("losing_txt").classList.remove("invisibility")
    gameMusic.pause();
    losingMusic.play();
-     };
+};
 
 function loadWinningScreen () {
   body.append(winningScreenImg);
@@ -186,10 +178,10 @@ if (isAvatarGoingLeft) {
     avatarPositionX -= movementSpeed;
   }
 } else if (isAvatarGoingRight) {
-  if (avatarPositionX < canvasWidth - avatarWidth) {
+    if (avatarPositionX < canvasWidth - avatarWidth) {
     avatarPositionX += movementSpeed;
+    }
   }
-}
 }
 
 function animate() {                                     
@@ -201,7 +193,7 @@ function animate() {
   if (animationFrameId % 250 === 0) {   
    bitcoins.push(new Bitcoin());
   } 
-  if (animationFrameId % 50 === 0) {   
+  if (animationFrameId % 40 === 0) {   
     shitcoins.push(new Shitcoin());
   }
   if (lifeCounter === 0) {
@@ -232,7 +224,7 @@ function animate() {
 
 window.addEventListener("load", () => {
     document.getElementById('start-button').onclick = () => {
-        startGame ();                                  
+        startGame ();                               
       };
       document.getElementById('restart_btn').onclick = () => {
         window.location.reload();                                
