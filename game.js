@@ -12,22 +12,22 @@ let lifeCounter = 1;
 let bitcoinCounter = 0;
 
 // music
-let gameMusic = new Audio("../Music/mc-quattro-back-to-the-future-retrowave-punk-20775.mp3");
+let gameMusic = new Audio("Music/mc-quattro-back-to-the-future-retrowave-punk-20775.mp3");
 gameMusic.volume = 0.1;
-let winningMusic = new Audio("../Music/success-fanfare-trumpets-6185.mp3");
+let winningMusic = new Audio("Music/success-fanfare-trumpets-6185.mp3");
 winningMusic.volume = 0.1; 
-let losingMusic = new Audio("../Music/wah-wah-sad-trombone-6347.mp3");
+let losingMusic = new Audio("Music/wah-wah-sad-trombone-6347.mp3");
 winningMusic.volume = 0.1; 
 
 // map 
 const backgroundImg = new Image();
-backgroundImg.src = '../Pictures/earth.jpg';
+backgroundImg.src = 'Pictures/earth.jpg';
 let canvasWidth = 1300;
 let canvasHeight = 700;
 
 //avatar
 const avatarImg = new Image();
-avatarImg.src = '../Pictures/wallet-removebg-preview.png';
+avatarImg.src = 'Pictures/wallet-removebg-preview.png';
 let isAvatarGoingLeft = false;
 let isAvatarGoingRight = false;
 let avatarPositionX = 650;
@@ -39,7 +39,7 @@ let avatarLength = 50;
 //bitcoin
 
 const bitcoinImg = new Image();
-bitcoinImg.src = '../Pictures/bitcoin-removebg-preview.png';
+bitcoinImg.src = 'Pictures/bitcoin-removebg-preview.png';
 let bitcoinWidth = 65;
 let bitcoinHeight = 65;
 let bitcoinFallingSpeed = 3.5;
@@ -73,7 +73,7 @@ class Bitcoin {
 // shitcoin
 
 const shitcoinImg = new Image();
-shitcoinImg.src = '../Pictures/shitcoin_aufkleber-removebg-preview.png';
+shitcoinImg.src = 'Pictures/shitcoin_aufkleber-removebg-preview.png';
 let shitcoinWidth = 65;
 let shitcoinHeight = 65;
 let shitcoinFallingSpeed = 5;
@@ -104,9 +104,9 @@ class Shitcoin {
 // lastStageScreens
 
 const losingScreenImg = new Image();
-losingScreenImg.src = '../Pictures/crash-losing-picture.png';
+losingScreenImg.src = 'Pictures/crash-losing-picture.png';
 const winningScreenImg = new Image();
-winningScreenImg.src = '../Pictures/crown-winning-picture.png';
+winningScreenImg.src = 'Pictures/crown-winning-picture.png';
 
 // -------------------- Section 02: functions and game logic -------------------- \\
 
